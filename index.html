@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Disrupção Tecnológica em Redes de Inovação | Resultados de Pesquisa</title>
+  <meta name="description" content="Estudo sobre a interdisciplinaridade, coesão de conhecimento e disrupção tecnológica no ecossistema de inovação de São Paulo (PIPE-FAPESP) entre 1997 e 2022.">
+  <meta name="keywords" content="inovação, redes de colaboração, interdisciplinaridade, FAPESP, PIPE, data science, redes complexas, clusters">
+  <meta name="author" content="Raphael C. M. Pereira">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Disrupção Tecnológica em Redes de Inovação">
+  <meta property="og:description" content="Descubra como a colaboração interdisciplinar moldou o ecossistema de inovação do estado de São Paulo ao longo de 25 anos.">
+  
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Plotly JS CDN -->
+  <script src="https://cdn.plot.ly/plotly-2.24.0.min.js" charset="utf-8"></script>
+  
+  <!-- vis.js Network CDN -->
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+
+  <!-- Header / Hero Section -->
+  <header class="section section-cream" id="hero-section">
+    <div class="container-text">
+      <div class="hero-meta">Discussão em Foco</div>
+      <h1 id="main-title">Disrupção Tecnológica em Redes de Inovação</h1>
+      
+      <p>Raphael Cardoso Mota Pereira.</p>
+      <p class="desk-meta">Relatório derivado do trabalho de mestrado: <br>
+        <a href="https://doi.org/10.11606/D.100.2024.tde-03042024-140601" target="_blank" rel="noopener">doi:10.11606/D.100.2024.tde-03042024-140601</a></p>
+
+      <!-- Custom Editorial Audio Player -->
+      <div class="audio-player-container" id="editorial-audio-player">
+        <button class="audio-control-btn" id="play-pause-btn" aria-label="Ouvir Resumo">
+          <svg viewBox="0 0 24 24" width="24" height="24" id="audio-icon-svg">
+            <!-- Play icon path -->
+            <path id="play-path" d="M8 5v14l11-7z" fill="currentColor"></path>
+            <!-- Pause icon path (hidden initially) -->
+            <path id="pause-path" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor" style="display:none;"></path>
+          </svg>
+        </button>
+        <div class="audio-info">
+          <div class="audio-title">Ouça um resumo de 7 minutos sobre este relatório</div>
+          <div class="audio-progress-bar-bg" id="audio-progress-bg">
+            <div class="audio-progress-bar-fill" id="audio-progress-fill"></div>
+          </div>
+          <div class="audio-time">
+            <span id="current-time">0:00</span>
+            <span id="duration-time">10:00</span>
+          </div>
+        </div>
+        <!-- Hidden audio element. Web Audio API will simulate sound if file not found. -->
+        <audio id="audio-element" src="audio_summary.m4a" preload="metadata"></audio>
+      </div>
+        
+
+      <p>
+        Este estudo avaliou como diferentes áreas do conhecimento trabalham juntas em projetos de inovação aberta no ecossistema de empreendedorismo do estado de São Paulo, com foco no programa PIPE-FAPESP, em um período de 25 anos (1997-2022). O trabalho mapeou a rede de colaboração dos 3 mil projetos aprovados e complementou essa análise com informações dos currículos de 7 mil pesquisadores envolvidos.
+      </p>
+      
+      <p>
+        Com base em métricas de diversidade e coesão dos conhecimentos nos projetos, foi possível identificar mudanças relevantes no perfil das parcerias. A partir de 2015, observou-se uma virada clara: a rede passou a ser mais interdisciplinar, em linha com o avanço de tecnologias disruptivas, com destaque para a inteligência artificial.
+      </p>
+      
+      <p>
+        Os projetos mais interdisciplinares também apresentaram maior transbordamento de conhecimentos entre diferentes projetos e municípios, indicando maior potencial de reaproveitamento de aprendizados e de geração de novas oportunidades. Em termos práticos, os resultados reforçam que estimular parcerias entre diferentes áreas de conhecimento é uma estratégia eficaz para aumentar a qualidade das conexões, tornar a rede mais resiliente e acelerar a criação de inovações com impacto.
+      </p>
+
+    </div>
+  </header>
+
+  <!-- Section 1: Interdisciplinarity definition & Sankey Diagram -->
+  <section class="section section-cream" id="interdisciplinarity-section">
+    <div class="container-text">
+      <h2>O que é interdisciplinaridade e qual sua importância para a inovação disruptiva?</h2>
+      <p>
+        A interdisciplinaridade é a integração de duas ou mais áreas de conhecimento para solucionar desafios tecnológicos complexos em um projeto. Ela se manifesta por meio de equipes multidisciplinares que reúnem uma variedade de saberes (diversidade) e possuem a capacidade de integrar esses conhecimentos através de pontos em comum (coesão). Ao contrário da abordagem puramente disciplinar, que foca em conhecimentos especializados e lineares, a interdisciplinaridade permite que o <em>know-how</em> flua entre os colaboradores, potencializando a inteligência coletiva do grupo.
+      </p>
+      <p>
+        Sua importância para a inovação disruptiva reside na capacidade de promover a colisão de diferentes trajetórias tecnológicas. Enquanto o conhecimento especializado costuma gerar inovações "verticais" que mantêm o <em>status quo</em> da indústria, a interdisciplinaridade incentiva desafios "horizontais" que provocam mudanças radicais nas bases de conhecimento. Esse processo é o que permite a ruptura de paradigmas estabelecidos e a criação de modelos de negócios mais arrojados, aumentando a complexidade econômica do ecossistema.
+      </p>
+    </div>
+    
+    <div class="container-wide">
+      <!-- Sankey Chart Wrapper -->
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <div class="chart-title-tag">Fluxo de Conhecimento</div>
+          <div class="chart-control-group">
+            <label for="sankey-filter" class="chart-select-label">Filtrar por Área de Formação:</label>
+            <select id="sankey-filter" class="chart-select">
+              <option value="all">🔄 Todas as Áreas</option>
+              <option value="exatas">Ciências Exatas e da Terra</option>
+              <option value="biologicas">Ciências Biológicas</option>
+              <option value="engenharias">Engenharias</option>
+              <option value="saude">Ciências da Saúde</option>
+              <option value="agrarias">Ciências Agrárias</option>
+              <option value="sociais">Ciências Sociais Aplicadas</option>
+              <option value="humanas">Ciências Humanas</option>
+              <option value="artes">Linguística, Letras e Artes</option>
+            </select>
+          </div>
+        </div>
+        <div id="sankey-chart" class="chart-container"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Metrics, K-Means & Temporal Evolution -->
+  <section class="section section-cream" id="metrics-section">
+    <div class="container-text">
+      <h2>Como as métricas de diversidade e coesão medem a interdisciplinaridade em projetos de PD&I?</h2>
+      <p>
+        As métricas de diversidade e coesão traduzem quantitativamente a complexidade das equipes de pesquisa e desenvolvimento. A diversidade é calculada pela fórmula de Shannon, que avalia a "riqueza" e a raridade das áreas de conhecimento presentes em um projeto. Já a coesão é medida pela densidade da rede de conhecimentos entre os pesquisadores, representando a capacidade de comunicação e integração do saber; quanto maior a coesão, mais fácil é o fluxo de experiências e métodos entre os membros da equipe.
+      </p>
+      <p>
+        A combinação desses dois indicadores permite classificar os projetos em quatro perfis distintos através do algoritmo K-Means, como a Interdisciplinaridade Especializada (alta diversidade e coesão) ou a Disciplina Especializada (baixa diversidade e alta coesão). Dessa forma, a interdisciplinaridade é considerada plena não apenas quando há uma grande variedade de saberes, mas quando esses conhecimentos são potencializados pelo compartilhamento efetivo de informações estratégicas e <em>networking</em> entre os pesquisadores.
+      </p>
+    </div>
+
+    <!-- Chart 3: K-Means Scatter Plot -->
+    <div class="container-wide">
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <div class="chart-title-tag">Agrupamento K-Means (4 Clusters): Coesão vs Diversidade</div>
+        </div>
+        <div id="kmeans-chart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <!-- Analytics Tables & Info Grid -->
+    <div class="container-wide">
+      <div class="analytics-grid">
+        <!-- Table 1 -->
+        <div class="analytics-card">
+          <div class="chart-header">
+          <div class="chart-title-tag">Quantidade de Projetos por Cluster</div>
+          </div>
+          <div class="table-responsive">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Grupo / Cluster</th>
+                  <th style="text-align: right;">Qtd Projetos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. Interdisciplinaridade especializada</td>
+                  <td style="text-align: right; font-weight: 500;">482</td>
+                </tr>
+                <tr>
+                  <td>2. Disciplina especializada</td>
+                  <td style="text-align: right; font-weight: 500;">645</td>
+                </tr>
+                <tr>
+                  <td>3. Potencial integração dentro da disciplina</td>
+                  <td style="text-align: right; font-weight: 500;">801</td>
+                </tr>
+                <tr>
+                  <td>4. Potencial integração interdisciplinar</td>
+                  <td style="text-align: right; font-weight: 500;">890</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Table 2 -->
+        <div class="analytics-card">
+          <div class="chart-header">
+          <div class="chart-title-tag">Distribuição por Grande Área do Conhecimento (%)</div>
+          </div>
+          <div class="table-responsive">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Grande Área</th>
+                  <th style="text-align: right;">C1 (%)</th>
+                  <th style="text-align: right;">C2 (%)</th>
+                  <th style="text-align: right;">C3 (%)</th>
+                  <th style="text-align: right;">C4 (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ciências Agrárias</td>
+                  <td style="text-align: right;">20.95</td>
+                  <td style="text-align: right;">15.97</td>
+                  <td style="text-align: right;">15.61</td>
+                  <td style="text-align: right;">11.69</td>
+                </tr>
+                <tr>
+                  <td>Ciências Biológicas</td>
+                  <td style="text-align: right;">15.77</td>
+                  <td style="text-align: right;">6.98</td>
+                  <td style="text-align: right;">13.73</td>
+                  <td style="text-align: right;">5.84</td>
+                </tr>
+                <tr>
+                  <td>Ciências Exatas e da Terra</td>
+                  <td style="text-align: right;">13.07</td>
+                  <td style="text-align: right;">23.26</td>
+                  <td style="text-align: right;">17.10</td>
+                  <td style="text-align: right;">18.09</td>
+                </tr>
+                <tr>
+                  <td>Ciências Humanas</td>
+                  <td style="text-align: right;">1.45</td>
+                  <td style="text-align: right;">0.78</td>
+                  <td style="text-align: right;">0.75</td>
+                  <td style="text-align: right;">0.56</td>
+                </tr>
+                <tr>
+                  <td>Ciências Sociais Aplicadas</td>
+                  <td style="text-align: right;">1.45</td>
+                  <td style="text-align: right;">2.95</td>
+                  <td style="text-align: right;">2.00</td>
+                  <td style="text-align: right;">1.69</td>
+                </tr>
+                <tr>
+                  <td>Ciências da Saúde</td>
+                  <td style="text-align: right;">13.49</td>
+                  <td style="text-align: right;">6.51</td>
+                  <td style="text-align: right;">8.86</td>
+                  <td style="text-align: right;">6.74</td>
+                </tr>
+                <tr>
+                  <td>Engenharias</td>
+                  <td style="text-align: right;">24.90</td>
+                  <td style="text-align: right;">36.74</td>
+                  <td style="text-align: right;">36.58</td>
+                  <td style="text-align: right;">53.48</td>
+                </tr>
+                <tr>
+                  <td>Interdisciplinar</td>
+                  <td style="text-align: right;">8.71</td>
+                  <td style="text-align: right;">6.67</td>
+                  <td style="text-align: right;">5.12</td>
+                  <td style="text-align: right;">1.69</td>
+                </tr>
+                <tr>
+                  <td>Linguística, Letras e Artes</td>
+                  <td style="text-align: right;">0.21</td>
+                  <td style="text-align: right;">0.16</td>
+                  <td style="text-align: right;">0.25</td>
+                  <td style="text-align: right;">0.22</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart 4: Temporal Volume per Cluster -->
+    <div class="container-wide">
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <div class="chart-title-tag">Evolução Temporal do Volume de Projetos por Cluster K-Means</div>
+        </div>
+        <div id="temporal-clusters-chart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <!-- Chart 5: Word Cumulative Evolution -->
+    <div class="container-wide">
+      <div class="chart-wrapper" style="margin-top: 40px;">
+        <div class="chart-header">
+          <div class="chart-title-tag">Evolução Cumulativa de Palavras-Chave nos Clusters 1 e 2</div>
+        </div>
+        <div id="word-evolution-chart" class="chart-container"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Collaboration Network -->
+  <section class="section section-cream" id="network-section">
+    <div class="container-text">
+      <h2>Qual é o impacto da interdisciplinaridade em redes de inovação?</h2>
+      <p>
+        O impacto da interdisciplinaridade nas redes de inovação é profundo, pois ela atua como um motor de transbordamento de conhecimento entre diferentes projetos e cidades. Projetos interdisciplinares possuem a propriedade de diminuir a "distância" técnica e geográfica na rede, tornando os estoques de conhecimento mais acessíveis e melhor distribuídos. Isso resulta em um ecossistema de inovação mais confiável e resiliente, capaz de acelerar mudanças tecnológicas globais.
+      </p>
+      <p>
+        Além disso, essa abordagem favorece a coopetição, um ambiente onde os agentes preferem colaborar e compartilhar informações estratégicas em troca de ganhos mútuos, como o acesso a recursos financeiros e profissionais altamente qualificados. Esse comportamento coletivo estimula a difusão do aprendizado tecnológico organizacional, transformando polos de pesquisa em sistemas complexos que elevam a competitividade das empresas e promovem o desenvolvimento econômico regional.
+      </p>
+    </div>
+
+    <!-- Network Chart Wrapper -->
+    <div class="container-wide">
+      <div class="chart-wrapper">
+        <div class="chart-header">
+          <div class="chart-title-tag">Rede de Colaboração dos Pesquisadores com as Áreas de Conhecimento dos Projetos</div>
+        </div>
+        <div id="network-chart" class="chart-container"></div>
+        
+        <!-- Legend for regions -->
+        <div class="custom-legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: var(--accent-green);"></div>
+            <span>Áreas de Conhecimento dos Projetos</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #a09280;"></div>
+            <span>Pesquisadores</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer / Contact Section -->
+  <footer class="footer" id="contact-section">
+    <div class="container-text">
+      <h2>Gostaria de saber mais sobre a pesquisa?</h2>
+      <p>Entre em contato pelo WhatsApp para discussões acadêmicas ou parcerias.</p>
+      
+      <a href="https://api.whatsapp.com/send?phone=5511952345453&text=Olá%20Raphael,%20gostaria%20de%20saber%20mais%20sobre%20a%20pesquisa%20sobre%20Disrupção%20Tecnológica%20em%20Redes%20de%20Inovação." 
+         class="footer-contact-btn" target="_blank" rel="noopener">
+        <!-- WhatsApp Icon SVG -->
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.202-1.362a9.92 9.92 0 0 0 4.808 1.242h.005c5.505 0 9.99-4.478 9.99-9.985 0-2.667-1.037-5.176-2.922-7.062A9.927 9.927 0 0 0 12.012 2zm5.72 13.918c-.313.88-1.57 1.73-2.176 1.85-.562.11-1.28.2-3.754-.78-3.164-1.253-5.2-4.453-5.36-4.663-.157-.21-1.267-1.688-1.267-3.21 0-1.52.793-2.27 1.077-2.572.28-.303.623-.377.83-.377.208 0 .417.002.6.01.19.01.442-.075.694.532.253.608.868 2.11.944 2.262.075.152.126.33.025.532-.1.202-.152.33-.3.507-.152.177-.318.393-.455.526-.152.146-.31.306-.133.608.177.302.784 1.29 1.683 2.09.16.14.3.26.47.37.28.18.57.147.74-.044.172-.19.74-.86.94-1.155.202-.295.4-.247.674-.146.275.1.1.868 2.146 1.772 1.077.532 1.737.8 1.813.927.075.127.075.736-.238 1.616z"/>
+        </svg>
+        <span>Raphael C. M. Pereira</span>
+      </a>
+      
+      <p class="footer-copyright">
+        &copy; 2026 Todos os direitos autorais reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Redirect debug logs to console
+    function logDebug(msg) {
+      console.log('Diag: ' + msg.replace(/<[^>]*>/g, '')); // strip HTML tags
+    }
+  </script>
+
+  <!-- App logic JS -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
