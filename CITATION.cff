@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Se você utilizar este software ou os dados desta pesquisa, por favor cite-o conforme abaixo."
+authors:
+  - family-names: "Pereira"
+    given-names: "Raphael Cardoso Mota"
+    orcid: "https://orcid.org/0009-0006-7281-7169"
+title: "Fomento à inovação por colaborações interdisciplinares em ciência e tecnologia: Análise de redes em projetos do programa Pesquisa Inovativa em Pequenas Empresas da FAPESP."
+version: 1.0.0
+doi: "https://doi.org/10.11606/D.100.2024.tde-03042024-140601"
+date-released: 2024-02-08
+url: "https://github.com/rcmp-code/scx-knowledge"
