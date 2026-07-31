@@ -1,4 +1,4 @@
-# scx-disrup
+# scx-knowledge
 
 Disrupção Tecnológica em Redes de Inovação
 
